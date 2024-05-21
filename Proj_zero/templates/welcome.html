@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function calculate() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var operator = document.getElementById('operator').value;
+            var result;
+
+            if (operator == '+') {
+                result = num1 + num2;
+            } else if (operator == '-') {
+                result = num1 - num2;
+            } else if (operator == '*') {
+                result = num1 * num2;
+            } else if (operator == '/') {
+                result = num1 / num2;
+            }
+
+            document.getElementById('result').innerText = "Result: " + result;
+        }
+    </script>
+</head>
+<body>
+    <h2>Welcome, {{ username }}</h2>
+    <form>
+        <input type="number" id="num1" required>
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="num2" required>
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+    <p id="result"></p>
+    <form action="{{ url_for('logout') }}" method="get">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
